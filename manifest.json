@@ -2,9 +2,9 @@
   "$schema": "./schema/piphi-manifest.schema.json",
   "manifest_version": "1.0",
   "id": "piphi-network-openepaperlink",
-  "name": "Piphi Network Openepaperlink",
+  "name": "OpenEPaperLink",
   "version": "0.1.0",
-  "description": "PiPhi starter runtime for hardware-negotiated OpenEPaperLink access points and tags.",
+  "description": "Monitor and control supported OpenEPaperLink access points and electronic-paper tags.",
   "metadata": {
     "generator": "piphi-network-create",
     "scaffold_version": "0.3.0",
@@ -133,5 +133,65 @@
         "default_widget": "tile"
       }
     }
-  ]
+  ],
+  "marketplace": {
+    "metadata_version": 2,
+    "display_name": "OpenEPaperLink",
+    "summary": "Monitor and control supported OpenEPaperLink access points and electronic-paper tags.",
+    "category": "other",
+    "regions": [
+      "WW"
+    ],
+    "languages": [
+      "en"
+    ],
+    "publisher": {
+      "name": "PiPhi Network",
+      "website_url": "https://piphi.io",
+      "support_url": "https://github.com/PiPhi-io/piphi-network-openepaperlink/issues",
+      "security_contact": "support@piphi.io"
+    },
+    "access": [
+      {
+        "id": "local_network",
+        "label": "Local network access",
+        "reason": "Discovers or communicates with supported services and devices on the homeowner's local network.",
+        "required": true
+      }
+    ],
+    "compatibility": [
+      {
+        "brand": "OpenEPaperLink",
+        "model": "Capability-negotiated access points and tags"
+      }
+    ],
+    "documentation_url": "https://github.com/PiPhi-io/piphi-network-openepaperlink",
+    "support_url": "https://github.com/PiPhi-io/piphi-network-openepaperlink/issues",
+    "changelog_url": "https://github.com/PiPhi-io/piphi-network-openepaperlink/releases",
+    "quality_tier": "unrated",
+    "governance": {
+      "schema_version": 1,
+      "publication_status": "draft",
+      "rollout_percent": 0,
+      "lifecycle_status": "active",
+      "qualification": {
+        "status": "unverified"
+      }
+    },
+    "device_types": [
+      "electronic-paper tag",
+      "access point"
+    ],
+    "protocols": [
+      "OpenEPaperLink API",
+      "HTTP"
+    ],
+    "discovery_methods": [
+      "access point discovery",
+      "tag discovery",
+      "manual"
+    ],
+    "connectivity": "local",
+    "offline_support": "full"
+  }
 }
