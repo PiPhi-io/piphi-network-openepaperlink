@@ -13,14 +13,20 @@
     {
       "id": "runtime-foundation", "status": "implemented", "scope": ["all-configurations"],
       "source_refs": ["core_vocabulary"],
-      "reason": "The scaffold implements configuration presence, connectivity state, refresh dispatch, and its configuration event.",
+      "reason": "The runtime reports connectivity from a successful read-only AP query, supports refresh, and emits a configuration event.",
       "state": ["connected"], "events": ["runtime.config.applied"], "conditions": ["state_matches"], "actions": ["refresh"]
+    },
+    {
+      "id": "ap-tag-summary", "status": "implemented", "scope": ["configured-local-access-points"],
+      "source_refs": ["oepl_core"],
+      "reason": "The AP's paginated /get_db endpoint exposes tag records and pending transfer counts without a mutation or WebSocket session.",
+      "state": ["ap_tag_count", "ap_pending_transfer_count"], "events": [], "conditions": [], "actions": []
     },
     {
       "id": "access-point-health-and-transport", "status": "planned", "scope": ["supported-openepaperlink-access-points"],
       "source_refs": ["oepl_core", "oepl_ha", "oepl_wiki"],
       "reason": "HTTP/WebSocket transport, firmware-version variation, authentication, reconnect, and sanitized AP status need implementation and fixtures.",
-      "state": ["ap_model", "ap_firmware_version", "ap_hardware_version", "ap_uptime_seconds", "ap_ip_address", "ap_channel", "ap_tx_power_dbm", "ap_heap_free_bytes", "ap_storage_free_bytes", "ap_temperature_c", "ap_wifi_rssi_dbm", "ap_tag_count", "ap_pending_transfer_count", "ap_last_seen_at", "transport_latency_ms"],
+      "state": ["ap_model", "ap_firmware_version", "ap_hardware_version", "ap_uptime_seconds", "ap_ip_address", "ap_channel", "ap_tx_power_dbm", "ap_heap_free_bytes", "ap_storage_free_bytes", "ap_temperature_c", "ap_wifi_rssi_dbm", "ap_last_seen_at", "transport_latency_ms"],
       "events": ["access_point.online", "access_point.offline", "access_point.degraded", "access_point.recovered", "access_point.restarted"],
       "conditions": ["access_point_is_online", "access_point_is_stale", "pending_transfers_above", "access_point_resource_below"],
       "actions": ["reconnect_access_point", "rediscover_tags"]

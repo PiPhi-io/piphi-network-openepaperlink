@@ -121,10 +121,12 @@
       "id": "piphi_network_openepaperlink_device",
       "name": "Piphi Network Openepaperlink",
       "description": "Automation metadata for Piphi Network Openepaperlink.",
-      "deviceClass": "tag",
-      "entityType": "tag",
+      "deviceClass": "access_point",
+      "entityType": "access_point",
       "capabilities": [
         "connected",
+        "ap_tag_count",
+        "ap_pending_transfer_count",
         "refresh"
       ],
       "targeting": {
