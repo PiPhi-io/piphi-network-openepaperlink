@@ -31,6 +31,14 @@ The runtime listens on port `4219` by default and exposes the common PiPhi runti
 
 ## Capability coverage
 
+The first live widget shows configured-tag and pending-transfer counts from a
+local OpenEPaperLink access point. Configure a private IP address or a `.local`
+or `.lan` hostname. The runtime reads the paginated `GET /get_db` endpoint,
+polls at a bounded interval, and reports disconnected when that read fails.
+No tag MAC addresses or content are sent to Core. The AP uses local HTTP, so
+this read-only integration should run on a trusted home network. The source
+for that endpoint is the upstream [tag database implementation](https://github.com/OpenEPaperLink/OpenEPaperLink/blob/master/ESP32_AP-Flasher/src/tag_db.cpp).
+
 `capability-catalog.json` inventories OpenEPaperLink access-point health,
 per-tag radio and battery state, display transfers, rendering, optional LEDs,
 buzzers, NFC and GPIO, scheduling, maintenance, and safety boundaries. Each
@@ -39,8 +47,8 @@ tests prevent unimplemented features from being advertised.
 
 Tag features remain planned until AP transport, firmware and tag-type
 negotiation, rendering fixtures, bounded transfer queues, and representative
-hardware tests exist. The starter runtime currently exposes only connectivity
-and refresh.
+hardware tests exist. Tag-specific controls are not advertised by this AP
+summary widget.
 
 ## Manifest
 

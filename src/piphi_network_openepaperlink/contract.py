@@ -23,6 +23,8 @@ CAPABILITIES: dict[str, dict[str, Any]] = {
         "kind": "sensor",
         "unit": "bool"
     },
+    "ap_tag_count": {"kind": "sensor", "value_kind": "numeric", "unit": "count"},
+    "ap_pending_transfer_count": {"kind": "sensor", "value_kind": "numeric", "unit": "count"},
     "refresh": {
         "kind": "action"
     }
@@ -31,13 +33,13 @@ CAPABILITIES: dict[str, dict[str, Any]] = {
 COMMANDS: dict[str, dict[str, Any]] = {
     "refresh": {
         "description": "Refresh the device state.",
-        "timeout_ms": 5000
+        "timeout_ms": 12000
     }
 }
 
 CONFIG_SCHEMA: dict[str, Any] = {
     "schema": {
-        "title": "Piphi Network Openepaperlink Setup",
+        "title": "OpenEPaperLink access point",
         "type": "object",
         "required": [
             "host"
@@ -54,11 +56,7 @@ CONFIG_SCHEMA: dict[str, Any] = {
             "poll_interval_seconds": {
                 "type": "integer",
                 "title": "Poll Interval Seconds",
-                "minimum": 5
-            },
-            "safety_mode": {
-                "type": "string",
-                "title": "Safety Mode"
+                "minimum": 60
             }
         }
     },
@@ -67,13 +65,10 @@ CONFIG_SCHEMA: dict[str, Any] = {
             "placeholder": "192.168.1.50"
         },
         "alias": {
-            "placeholder": "Office Device"
+            "placeholder": "Living room tags"
         },
         "poll_interval_seconds": {
-            "placeholder": "30"
-        },
-        "safety_mode": {
-            "placeholder": "enabled"
+            "placeholder": "300"
         }
     }
 }
@@ -82,9 +77,11 @@ FALLBACK_ENTITY: dict[str, Any] = {
     "id": "demo-device",
     "name": "Demo Device",
     "device_id": "demo-device",
-    "entity_type": "tag",
+    "entity_type": "access_point",
     "capabilities": [
         "connected",
+        "ap_tag_count",
+        "ap_pending_transfer_count",
         "refresh"
     ],
     "available_commands": [
